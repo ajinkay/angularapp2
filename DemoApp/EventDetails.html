@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="eventsApp">
+<head>
+    <title> event details page </title>
+    <script src="app/lib/jquery.min.js"></script>
+    <script src="app/lib/bootstrap.min.js"></script>
+    <script src="app/lib/underscore-1.4.4.min.js"></script>
+    <script src="app/lib/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="app/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="app/css/app.css" />
+    <script src="app/js/app.js"></script>
+    <script src="app/js/controllers/EventController.js"></script>
+</head>    
+<body>
+    
+    <div class="container">
+    <img src="app/img/angularjs-logo.png" />
+    <div class="navbar">
+    <div class="navbar-inner">
+    <ul class="nav">
+    </ul>    
+    </div>
+    </div>
+    <div ng-controller="EventController">
+    <div class="row">
+    <div class="spann11">
+        <h2>{{event.name}}</h2>
+    </div>
+</div>
+    <div class="row">
+    <div class="span3">
+        <div><strong>time</strong>: {{event.time}}</div>
+        <div><strong>date</strong>: {{event.date}}</div>
+    </div>
+
+    </div>
+
+    <div class="row">
+            <div class="span4">
+                <address>
+                <div><strong>Address</strong></div>
+                {{event.location.address}} <br />
+                {{event.location.area}} || {{event.location.city}}
+                </address>
+            </div>
+        
+            </div>
+    </div>
+
+    </div>
+</body>
+
+</html>
