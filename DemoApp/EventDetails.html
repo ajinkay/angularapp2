@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html ng-app="eventsApp">
 <head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title> event details page </title>
-    <script src="app/lib/jquery.min.js"></script>
+    <!-- <script src="app/lib/jquery.min.js"></script> -->
     <script src="app/lib/bootstrap.min.js"></script>
     <script src="app/lib/underscore-1.4.4.min.js"></script>
     <script src="app/lib/angular/angular.min.js"></script>
+	 <script src="app/lib/angular/angular-sanitize.js"></script>
     <link rel="stylesheet" href="app/css/bootstrap.min.css" />
     <link rel="stylesheet" href="app/css/app.css" />
     <script src="app/js/app.js"></script>
@@ -24,11 +26,14 @@
     <div ng-controller="EventController">
     <div class="row">
     <div class="spann11">
-        <h2>{{event.name}}</h2>
+        <h2 ng-bind="event.name "></h2>
     </div>
 </div>
     <div class="row">
     <div class="span3">
+		<div ng-style="st" ng-bind="snippet">show this</div>
+		
+		
         <div><strong>time</strong>: {{event.time}}</div>
         <div><strong>date</strong>: {{event.date}}</div>
     </div>
@@ -44,7 +49,35 @@
                 </address>
             </div>
         
-            </div>
+    </div>
+	<hr />
+	<h3> sessions </h3>
+	<ul class="thumbnails">
+	<li ng-repeat="session in event.sessions">
+	<div class="row session">
+	<div class="span0 well votingWidget">
+	<div class="votingButton" ng-click="upvote(session)">
+	<i class="icon-chevron-up icon-white"></i>
+	</div>
+	
+	<div class="badge badge-inverse">
+		{{session.vote}}
+	</div>
+	<div class="votingButton" ng-click="downvote(session)">
+	<i class="icon-chevron-down icon-white"></i>
+	</div>
+	</div>
+	<div class="well span9">
+	<h4 class="well-title">{{session.name}}</h4>
+	<h6 style="margin-top: -10px">{{session.tutor}}</h6>
+	<span>Duration: {{session.dur}}</span><br />
+	<span>Level: {{session.level}}</span>
+	<p>{{session.abs}}</p>
+	</div>
+	</div>
+	</li>
+	</ul>
+	</ul>
     </div>
 
     </div>
