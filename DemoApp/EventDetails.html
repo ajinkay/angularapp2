@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title> event details page </title>
-    <!-- <script src="app/lib/jquery.min.js"></script> -->
+    <script src="app/lib/jquery.min.js"></script> 
     <script src="app/lib/bootstrap.min.js"></script>
     <script src="app/lib/underscore-1.4.4.min.js"></script>
     <script src="app/lib/angular/angular.min.js"></script>
@@ -12,30 +12,35 @@
     <link rel="stylesheet" href="app/css/app.css" />
     <script src="app/js/app.js"></script>
     <script src="app/js/controllers/EventController.js"></script>
+    <script src="app/js/filters.js"></script>
 </head>    
 <body>
     
     <div class="container">
-    <img src="app/img/angularjs-logo.png" />
+    
     <div class="navbar">
     <div class="navbar-inner">
     <ul class="nav">
+    <li class="nav"><a href="NewEvent.html">Create Event</a></li>
     </ul>    
     </div>
     </div>
+
     <div ng-controller="EventController">
+    <img src="app/img/angularjs-logo.png" />
     <div class="row">
     <div class="spann11">
-        <h2 ng-bind="event.name "></h2>
+        <h2 ng-bind="event.name | lowercase "></h2>
     </div>
 </div>
     <div class="row">
     <div class="span3">
-		<div ng-style="st" ng-bind="snippet">show this</div>
+		
 		
 		
         <div><strong>time</strong>: {{event.time}}</div>
-        <div><strong>date</strong>: {{event.date}}</div>
+        <div><strong>date</strong>: {{event.date | date:"mediumDate"}}</div>
+        <div><strong>price</strong>: {{34 | number:2 |currency}}</div>
     </div>
 
     </div>
@@ -51,9 +56,22 @@
         
     </div>
 	<hr />
-	<h3> sessions </h3>
+    <h3> sessions </h3>
+    
+    orderBy : <select ng-model="order" >
+                <option selected value="name">name</option>
+                <option  value="dur">duration</option>
+                <option value="-vote">votes</option>
+                </select>
+
+    filterBy : <select ng-model="data.level" >
+                        <option value="">All</option>
+                        <option value="basic">Introductory</option>
+                        <option value="intermidiate">Intermidiate</option>
+                        <option  value="Expert">Expert</option>
+                        </select>
 	<ul class="thumbnails">
-	<li ng-repeat="session in event.sessions">
+	<li ng-repeat="session in event.sessions | orderBy:order |filter:data">
 	<div class="row session">
 	<div class="span0 well votingWidget">
 	<div class="votingButton" ng-click="upvote(session)">
@@ -70,7 +88,7 @@
 	<div class="well span9">
 	<h4 class="well-title">{{session.name}}</h4>
 	<h6 style="margin-top: -10px">{{session.tutor}}</h6>
-	<span>Duration: {{session.dur}}</span><br />
+	<span>Duration: {{session.dur | duration}}</span><br />
 	<span>Level: {{session.level}}</span>
 	<p>{{session.abs}}</p>
 	</div>

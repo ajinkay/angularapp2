@@ -3,9 +3,11 @@
 eventsApp.controller('EventController',function($scope){
 $scope.snippet="my name is ajinkay";
 $scope.st={color: "red"};
+$scope.order="name";
+
 $scope.event={
     name: "The Angular WorkShop",
-    date: "17-aug-2017",
+    date:new Date("2017",11,"21"),
     time : "10:00 pm",
     img: "./app/img/angularjs-logo.png",
     location: {
@@ -20,7 +22,7 @@ $scope.event={
 	{
 		name: "Introduction to Angular",
 		tutor: "mr. joe eames",
-		dur: "1 hr",
+		dur: 1,
 		level: "basic",
 		abs: "this is basic introductory level course for angular.",
 		vote: 0
@@ -29,8 +31,8 @@ $scope.event={
 	{
 		name: "Step into Angular",
 		tutor: "mr. Scott Allen",
-		dur: "2 hr",
-		level: "intermiddiate",
+		dur: 2,
+		level: "intermidiate",
 		abs: "here we will see services,directive for angular.",
 		vote: 0
 	}
@@ -38,7 +40,7 @@ $scope.event={
 	{
 		name: "Angular In Depth",
 		tutor: "mr. ",
-		dur: "3 hr",
+		dur: 4,
 		level: "Expert",
 		abs: "this is in depth course for angular.",
 		vote: 0

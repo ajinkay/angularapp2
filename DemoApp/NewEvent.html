@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="eventsApp">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title> event details page </title>
+    <script src="app/lib/jquery.min.js"></script>
+    <script src="app/lib/bootstrap.min.js"></script>
+    <script src="app/lib/underscore-1.4.4.min.js"></script>
+    <script src="app/lib/angular/angular.min.js"></script>
+	 <script src="app/lib/angular/angular-sanitize.js"></script>
+    <link rel="stylesheet" href="app/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="app/css/app.css" />
+    <script src="app/js/app.js"></script>
+    <script src="app/js/controllers/EventController.js"></script>
+    <script src="app/js/controllers/EditEventController.js"></script>
+    
+    <script src="app/js/filters.js"></script>
+</head>    
+<body>
+    
+    <div class="container">
+    
+    <div class="navbar">
+    <div class="navbar-inner">
+    <ul class="nav">
+        <li><a href="NewEvent.html">Create Event</a></li>
+    </ul>    
+    </div>
+    </div>
+    <div ng-controller="editEventController">
+        <div class="container">
+            <h2>New Event</h2>
+            <form>
+                <fieldset>
+                    <label for="name" >Event Name</label>
+                    <input type="text" ng-model="event.name" id="name" placeholder="enter name of the event" />
+                    <label for="date" >Event Date</label>
+                    <input type="text" id="date" ng-model="event.date" placeholder="enter date of the event" />
+                    <label for="time" >Event time</label>
+                    <input type="text" id="time" ng-model="event.time" placeholder="enter time of the event" />
+                    <label for="location" >Event location</label>
+                    <input type="text" id="location" ng-model="event.location" placeholder="enter location of the event" />
+                   <br />
+                    <input type="text" id="city" ng-model="event.city" placeholder="city.." />
+                    
+                    <input type="text" id="area" ng-model="event.area" placeholder="area" />
+                    <label for="image" >Event Image</label>
+                    <input type="text" ng-model="event.imgUrl" id="image" placeholder="image ......" />
+                </fieldset>
+                        <br />
+                        <br />
+                        
+                        <img ng-src={{event.imgUrl}} src="" alt="my image" />
+                    <br />
+                    <input type="button" class="btn btn-primary" ng-click="save(event)" value="submit" />
+                    <input type="button" class="btn btn-default" ng-click="cancel()" value="cancel" />
+                    
+                </form>
+            </div>
+    </div>
+</body>
+
+</html>
